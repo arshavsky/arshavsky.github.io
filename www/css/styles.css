@@ -32,14 +32,15 @@ p {
 }
 #wrapper {
     min-height: 100%;
-    width: 960px;
+    width: 75%;
     margin: auto;
 }
 
 #questionMark {
-    padding-left: 11px;
+    background-color: antiquewhite;
+    padding-left: 1.5%;
+    padding-right: 1.5%;
     display: inline-block;
-    width: 22px;
     font: 20px 'Open Sans', sans-serif;
     line-height: 38px;
 }
@@ -57,6 +58,7 @@ header a:hover {
 /* HEADER */
 
 header {
+    background-color: azure;
     padding-top: 28px;
     padding-bottom: 0px;
     border-bottom: 1px solid #d5d5d5;
@@ -64,9 +66,9 @@ header {
 
 /* NAVIGATION*/
 nav {
+    background-color: cadetblue;
     display: inline-block;
-    width: 923px;
-    margin-right: 0;
+    float: right;
 }
 
 nav a {
