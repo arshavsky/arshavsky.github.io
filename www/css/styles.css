@@ -30,19 +30,19 @@ p {
     font-weight: 400;
     letter-spacing: -1px;
 }
+
 #wrapper {
     min-height: 100%;
     width: 75%;
     margin: auto;
 }
 
-#questionMark {
-    background-color: antiquewhite;
-    padding-left: 1.5%;
-    padding-right: 1.5%;
-    display: inline-block;
-    font: 20px 'Open Sans', sans-serif;
-    line-height: 38px;
+/* HEADER */
+
+header {
+    padding-top: 28px;
+    padding-bottom: 0px;
+    border-bottom: 1px solid #d5d5d5;
 }
 
 header a {
@@ -55,18 +55,20 @@ header a:hover {
     color: #ADD6FF;
     transition: color 0.25s ease-out;
 }
-/* HEADER */
 
-header {
-    background-color: azure;
-    padding-top: 28px;
-    padding-bottom: 0px;
-    border-bottom: 1px solid #d5d5d5;
+/* LOGO */
+
+#questionMark {
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+    display: inline-block;
+    font: 20px 'Open Sans', sans-serif;
+    line-height: 38px;
 }
 
 /* NAVIGATION*/
+
 nav {
-    background-color: cadetblue;
     display: inline-block;
     float: right;
 }
