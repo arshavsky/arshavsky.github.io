@@ -14,9 +14,9 @@ html, body {
 /* HEADER */
 
 header {
-    padding-top: 28px;
-    padding-bottom: 0px;
-    border-bottom: 1px solid #d5d5d5;
+    padding-top: 2.154em;
+    padding-bottom: 0em;
+    border-bottom: 0.077em solid #d5d5d5;
 }
 
 header a {
@@ -36,8 +36,8 @@ header a:hover {
     padding-left: 1.5%;
     padding-right: 1.5%;
     display: inline-block;
-    font: 20px 'Open Sans', sans-serif;
-    line-height: 38px;
+    font: 1.538em 'Open Sans', sans-serif;
+    line-height: 1.95em;
 }
 
 /* NAVIGATION*/
@@ -60,36 +60,36 @@ nav ul {
 }
 
 nav li {
-    font: 13px 'Open Sans', sans-serif;
-    line-height: 18px;
-    padding: 10px;
+    font: 1em 'Open Sans', sans-serif;
+    line-height: 1.385em;
+    padding: 0.769em;
 }
 
 .mainMenu li {
     display: inline-block;
-    padding: 10px 5px;
+    padding: 0.77em 0.385em;
     margin: 0;
 }
 
 .mainMenu a:hover {
-    padding-bottom: 5px;
+    padding-bottom: 0.385em;
     color: #666666;
     text-decoration: none;
-    border-bottom: 4px solid #C2FFD6;
+    border-bottom: 0.308em solid #C2FFD6;
 }
 
 .highlightedMenuButton {
     cursor: default;
-    padding-bottom: 5px;
+    padding-bottom: 0.385em;
     color: #666666;
-    border-bottom: 4px solid #C2FFD6;
+    border-bottom: 0.308em solid #C2FFD6;
 }
     
 /*SECTION*/
 
 section {
     overflow: auto;
-    padding-bottom: 150px;
+    padding-bottom: 11.538em;
     text-align: center;
 }
 
