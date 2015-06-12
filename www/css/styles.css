@@ -4,13 +4,6 @@ html, body {
     font: 13px 'Open Sans', sans-serif;
 }
 
-::selection {
-    background: #FFEFFF;
-}
-
-::-moz-selection {
-    background: #FFEFFF;
-}
 
 #wrapper {
     min-height: 100%;
@@ -95,7 +88,7 @@ nav li {
 
 section {
     overflow: auto;
-    padding-bottom: 100px;
+    padding-bottom: 150px;
     text-align: center;
 }
 
@@ -131,30 +124,29 @@ footer {
     border-top: 1px solid #d5d5d5;
 }
 
-/*footer a specs*/
-
 footer a {
     color:#d5d5d5;
     text-decoration: none;
     transition: color 0.5s ease-out;
 }
 
-/*footer hover specs*/
-
 footer a:hover {
     color: #ADD6FF;
     transition: color 0.25s ease-out;
 }
 
-/* Other */
+/* OTHER STYLE */
 
 .unstiledList {
+    text-align: center;
+    padding: 0;
     list-style-type: none;
     font: 13px 'Open Sans', sans-serif;
     color: #777777;
 }
 
 h2 {
+    text-align: center;
     margin-top: 2em;
     font: 22px 'Open Sans', sans-serif;
     color: #333333;
@@ -165,4 +157,14 @@ h2 {
     list-style-type: none;
     font: 10px 'Open Sans', sans-serif;
     color: #777777;
+}
+
+/* SELECTION COLOR */
+
+::selection {
+    background: #FFEFFF;
+}
+
+::-moz-selection {
+    background: #FFEFFF;
 }
