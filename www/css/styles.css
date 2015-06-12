@@ -22,7 +22,7 @@ header {
 header a {
     color: #666666;
     text-decoration: none;
-    transition: color 0.5s ease-out;
+    transition: color 0.25s ease-out;
 }
 
 header a:hover {
@@ -128,7 +128,7 @@ footer {
 footer a {
     color:#d5d5d5;
     text-decoration: none;
-    transition: color 0.5s ease-out;
+    transition: color 0.25s ease-out;
 }
 
 footer a:hover {
