@@ -145,3 +145,24 @@ footer a:hover {
     color: #ADD6FF;
     transition: color 0.25s ease-out;
 }
+
+/* Other */
+
+.unstiledList {
+    list-style-type: none;
+    font: 13px 'Open Sans', sans-serif;
+    color: #777777;
+}
+
+h2 {
+    margin-top: 2em;
+    font: 22px 'Open Sans', sans-serif;
+    color: #333333;
+    letter-spacing: -1px;
+}
+
+.smallerListFont {
+    list-style-type: none;
+    font: 10px 'Open Sans', sans-serif;
+    color: #777777;
+}
