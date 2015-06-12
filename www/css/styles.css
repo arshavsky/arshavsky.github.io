@@ -78,7 +78,7 @@ nav li {
     border-bottom: 4px solid #C2FFD6;
 }
 
-#highlightedMenuButton {
+.highlightedMenuButton {
     cursor: default;
     padding-bottom: 5px;
     color: #666666;
