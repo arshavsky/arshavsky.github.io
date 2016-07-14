@@ -14,19 +14,19 @@ html, body {
 /* HEADER */
 
 header {
-    padding-top: 2.154em;
-    padding-bottom: 0em;
+    height: 50px;
+    text-align: center;
     border-bottom: 0.077em solid #d5d5d5;
 }
 
 header a {
-    color: #666666;
+    color: black;
     text-decoration: none;
     transition: color 0.25s ease-out;
 }
 
 header a:hover {
-    color: #ADD6FF;
+    color: red;
     transition: color 0.25s ease-out;
 }
 
@@ -42,13 +42,15 @@ header a:hover {
 
 /* NAVIGATION*/
 
-nav {
+nav {  
+    width: 100%;
+    text-align: center;
     display: inline-block;
     float: right;
 }
 
 nav a {
-    color: #3f3f3f;
+    color: black;
     text-decoration: none;
 }
 
@@ -65,6 +67,10 @@ nav li {
     padding: 0.769em;
 }
 
+.mainMenu {
+    text-align: center;
+}
+
 .mainMenu li {
     display: inline-block;
     padding: 0.77em 0.385em;
@@ -72,16 +78,14 @@ nav li {
 }
 
 .mainMenu a:hover {
-    padding-bottom: 0.385em;
-    color: #666666;
-    text-decoration: none;
-    border-bottom: 0.308em solid #C2FFD6;
+    color: black;
+    text-decoration: underline;
 }
 
 .highlightedMenuButton {
     cursor: default;
     padding-bottom: 0.385em;
-    color: #666666;
+    color: black;
     border-bottom: 0.308em solid #C2FFD6;
 }
     
@@ -97,7 +101,7 @@ section h1 {
     padding: 0;
     margin-top: 4em;
     font-size: 3.692em;
-    color: #3f3f3f;
+    color: black;
     font-weight: 400;
     letter-spacing: -0.077em;
 }
@@ -105,7 +109,7 @@ section h1 {
 section p {
     margin-top: -2.6em;
     font-size: 1.231em;
-    color: #d5d5d5;
+    color: black;
     font-weight: 400;
     letter-spacing: -0.077em;
 }
@@ -123,14 +127,13 @@ footer {
 }
 
 footer a {
-    color:#d5d5d5;
+    color:black;
     text-decoration: none;
-    transition: color 0.25s ease-out;
+   
 }
 
 footer a:hover {
-    color: #ADD6FF;
-    transition: color 0.25s ease-out;
+    text-decoration: underline;
 }
 
 /* OTHER STYLE */
@@ -140,29 +143,29 @@ footer a:hover {
     padding: 0;
     list-style-type: none;
     font: 13px 'Open Sans', sans-serif;
-    color: #777777;
+    color: black;
 }
 
 h2 {
     text-align: center;
     margin-top: 2em;
     font: 22px 'Open Sans', sans-serif;
-    color: #333333;
+    color: black;
     letter-spacing: -1px;
 }
 
 .smallerListFont {
     list-style-type: none;
     font: 10px 'Open Sans', sans-serif;
-    color: #777777;
+    color: black;
 }
 
 /* SELECTION COLOR */
 
 ::selection {
-    background: #FFEFFF;
+    background: red;
 }
 
 ::-moz-selection {
-    background: #FFEFFF;
+    background: red;
 }
