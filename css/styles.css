@@ -1,9 +1,23 @@
 html, body {
     height: 100%;
+    width: 100%;
     margin: 0;
     font: 13px 'Open Sans', sans-serif;
 }
 
+body {
+    display: table;
+}
+
+.vertical-align {
+    font: 60px 'Open Sans', sans-serif;
+    font-weight: 600 !important;
+    letter-spacing: -7px;
+    width: 100%;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
 
 #wrapper {
     min-height: 100%;
