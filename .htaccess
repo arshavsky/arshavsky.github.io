@@ -1,6 +1,10 @@
+//Remove .html from URL
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^\.]+)$ $1.html [NC,L]
 
-#Alternate default index page
-DirectoryIndex adventure.html
+//Redirect to Adventure
+RedirectMatch ^/$ http://www.arshavsky.com/adventure
+
+
+
