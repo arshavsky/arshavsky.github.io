@@ -142,7 +142,8 @@ a {
 
 .image--wide {
   width: 100%;
-  border-radius: 5px; }
+  height: 500px;
+  object-fit: cover; }
 
 .footer {
   margin-top: 50px;
