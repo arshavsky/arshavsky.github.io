@@ -20,6 +20,9 @@ h2 {
 p {
   font-weight: 200; }
 
+.p--heavy {
+  font-weight: 400; }
+
 a {
   -webkit-transition: 0.25s ease-in;
   transition: 0.25s ease-in; }
