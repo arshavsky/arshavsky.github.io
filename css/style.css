@@ -111,7 +111,8 @@ a {
 
 .container__segment {
   margin: 0;
-  padding-top: 0; }
+  padding-top: 0;
+  padding-bottom: 50px; }
 
 .container__segment-title {
   text-align: center; }
@@ -168,7 +169,7 @@ a {
   .footer a {
     text-decoration: none;
     margin: 0 15px;
-    color: #ffffff; }
+    color: #b3b3b3; }
     .footer a:hover {
       color: #666666; }
 
