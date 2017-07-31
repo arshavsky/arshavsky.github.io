@@ -112,7 +112,7 @@ a {
 .container__segment {
   margin: 0;
   padding-top: 0;
-  padding-bottom: 50px; }
+  padding-bottom: 0; }
 
 .container__segment-title {
   text-align: center; }
