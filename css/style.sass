@@ -7,16 +7,18 @@ $body-font: 16px
 $nav-font: 20px
 $arrow-font: 26px
 $h1-font: 70px
-$h2-font: 40px
+$h2-font: 30px
+$h3-font: 30px
 
 //color
 $black: #000000
 $footer: #e6e6e6
-$footer__font: #b3b3b3
-$footer__font--active: #666666
+$url--default: #000000
 $url--visited: #000000
-$url--active: #000000 
+$url--active: #000000
 $url--hover: #000000
+$url-footer--default: #b3b3b3
+$url-footer--active: #666666
 
 body
 	font-family: $font
@@ -33,9 +35,15 @@ h1
 	
 h2
 	font-family: $font-heading
-	font-size: 30px
+	font-size: $h2-font
 	font-weight: 200
-	letter-spacing: 5px	
+	letter-spacing: 5px
+
+h3
+	font-family: $font-heading
+	font-size: $h3-font
+	font-weight: 200
+	letter-spacing: 0px
 
 p
 	font-weight: 200
@@ -49,13 +57,18 @@ ul
 a
 	-webkit-transition: 0.25s ease-in
 	transition: 0.25s ease-in
+	color: $url--default
+	text-decoration: none
 	&:visited
 		color: $url--visited
 	&:active
 		color: $url--active
 	&:hover
 		color: $url--hover
-		text-decoration: none	
+		text-decoration: underline
+
+.url-arrow--back
+	color: $url--default
 
 .text__centered
 	text-align: center	
@@ -87,14 +100,14 @@ a
 	letter-spacing: -2px
 	color: $black
 	cursor: pointer
+	&:hover
+		text-decoration: none
 
 .nav__menu-item-link--inactive
 	position: relative
 	
 .nav__menu-item-link--active
 	font-weight: 300 !important
-	&:hover
-		text-decoration: none
 
 .btn
 	width: 100px
@@ -133,8 +146,25 @@ a
 	padding-top: 0
 	padding-bottom: 0
 
+.container__segment-p
+	margin-left: auto
+	margin-right: auto
+	text-align: left
+
+.container__segment-p--800
+	width: 800px
+
 .container__segment-title
 	text-align: center
+
+.container__segment-title--sub
+	margin-top: -40px
+
+.container__segment-img
+	display: block
+	margin-top: 60px
+	margin-left: auto
+	margin-right: auto
 
 .book-list
 	width: 100%
@@ -188,9 +218,9 @@ a
 	a
 		text-decoration: none
 		margin: 0 15px
-		color: $footer__font
+		color: $url-footer--default
 		&:hover
-			color: $footer__font--active
+			color: $url-footer--active
 
 // fotorama
 .fotorama__box

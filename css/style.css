@@ -17,6 +17,12 @@ h2 {
   font-weight: 200;
   letter-spacing: 5px; }
 
+h3 {
+  font-family: "Exo 2", sans-serif;
+  font-size: 30px;
+  font-weight: 200;
+  letter-spacing: 0px; }
+
 p {
   font-weight: 200; }
 
@@ -29,14 +35,19 @@ ul {
 
 a {
   -webkit-transition: 0.25s ease-in;
-  transition: 0.25s ease-in; }
+  transition: 0.25s ease-in;
+  color: #000000;
+  text-decoration: none; }
   a:visited {
     color: #000000; }
   a:active {
     color: #000000; }
   a:hover {
     color: #000000;
-    text-decoration: none; }
+    text-decoration: underline; }
+
+.url-arrow--back {
+  color: #000000; }
 
 .text__centered {
   text-align: center; }
@@ -68,14 +79,14 @@ a {
   letter-spacing: -2px;
   color: #000000;
   cursor: pointer; }
+  .nav__menu-item-link:hover {
+    text-decoration: none; }
 
 .nav__menu-item-link--inactive {
   position: relative; }
 
 .nav__menu-item-link--active {
   font-weight: 300 !important; }
-  .nav__menu-item-link--active:hover {
-    text-decoration: none; }
 
 .btn {
   width: 100px;
@@ -114,8 +125,25 @@ a {
   padding-top: 0;
   padding-bottom: 0; }
 
+.container__segment-p {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left; }
+
+.container__segment-p--800 {
+  width: 800px; }
+
 .container__segment-title {
   text-align: center; }
+
+.container__segment-title--sub {
+  margin-top: -40px; }
+
+.container__segment-img {
+  display: block;
+  margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto; }
 
 .book-list {
   width: 100%;
