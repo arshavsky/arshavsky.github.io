@@ -3632,16 +3632,6 @@ Beast.decl({
 
 
 Beast.decl({
-    Footer: {
-        expand: function () {
-            this.append(
-                Beast.node("link",{__context:this},"\n                    ",Beast.node("Link",{"href":"himself@arshavsky.com"},"himself@arshavsky.com"),"\n                ")
-            )
-        }
-    }
-})
-
-Beast.decl({
     Link: {
         tag: 'a',
         noElems:true,
@@ -3650,6 +3640,16 @@ Beast.decl({
             if (this.mod('New')) {
                 this.domAttr('target', '_blank')
             }
+        }
+    }
+})
+
+Beast.decl({
+    Footer: {
+        expand: function () {
+            this.append(
+                Beast.node("link",{__context:this},"\n                    ",Beast.node("Link",{"href":"himself@arshavsky.com"},"himself@arshavsky.com"),"\n                ")
+            )
         }
     }
 })
