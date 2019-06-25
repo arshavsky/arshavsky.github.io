@@ -1,0 +1,84 @@
+/* CUT THE FILE HERE */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: none;
+}
+td {
+  padding: 0;
+  vertical-align: baseline;
+}
+html {
+  background: transparent;
+}
+.App {
+  background: #fff;
+  padding: 0;
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+}
+/* CUT THE FILE HERE */
+.BookList {
+  text-align: center;
+}
+.BookList__remark {
+  color: #f00;
+  font-weight: 200;
+  margin-right: 4px;
+}
+.BookList__item {
+  display: table;
+  width: 100%;
+  margin: 2px 0;
+}
+.BookList__item_highlight .BookList__title-wrap {
+  background-color: #000;
+  color: #fff;
+  padding: 0 4px;
+}
+.BookList__year-title {
+  font-family: "Exo 2", sans-serif;
+  font-size: 30px;
+  font-weight: 200;
+  letter-spacing: 5px;
+  margin: 24px 0;
+  display: table-caption;
+}
+.BookList__title {
+  text-align: right;
+  padding: 0 4px;
+}
+.BookList__title,
+.BookList__author {
+  display: table-cell;
+  vertical-align: middle;
+  width: 50%;
+}
+.BookList__author {
+  text-align: left;
+  font-weight: 200;
+  margin-left: 4px;
+}
+/* CUT THE FILE HERE */
+.Footer {
+  margin-top: 50px;
+  background-color: #e6e6e6;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
+  font-weight: 100;
+  font-size: 16px;
+}
+/* CUT THE FILE HERE */
+.Link {
+  text-decoration: none;
+  margin: 0 15px;
+  color: #b3b3b3;
+  transition: 0.25s ease-in;
+}
+.Link:hover {
+  color: #666;
+  transition: 0.25s ease-in;
+}
