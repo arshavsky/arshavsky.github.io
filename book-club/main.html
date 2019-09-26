@@ -9,27 +9,26 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <link href="https://fonts.googleapis.com/css?family=EB+Garamond&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Archivo:400,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://use.typekit.net/wbs5wyr.css">
 
-<title>Reading Shelf</title> 
+<title>Reading List</title> 
 
 <script type="bml">  
 
     <App>
 
     	<Switch>
-    		<item href="http://arshavsky.com/book-club" Tiles>
-                <icon/>
-                <text>Tiles</text>
-            </item>
-            <item href="http://arshavsky.com/book-club/list.html" List Active>
-                <icon/>
-                <text>List</text>
-            </item>
+    		<item href="http://arshavsky.com/" Tiles Active>
+    			<icon/>
+    			<text>Tiles</text>
+    		</item>
+    		<item href="http://arshavsky.com/list.html" List>
+    			<icon/>
+    			<text>List</text>
+    		</item>
     	</Switch>
 
-        <Books View="list"/>
+        <Books/>
 
     </App>
 
