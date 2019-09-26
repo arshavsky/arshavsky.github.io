@@ -1,0 +1,38 @@
+
+
+/*
+
+18 fonts are located under /assets/TT-Firs-Neue
+
+Below I am invoking only 4. Add or remove when you need more or less.
+
+*/
+
+@font-face {
+    font-family: 'tt-firs-neue-bold';
+    src: url("../../assets/TT-First-Neue/TTFirsNeue-Bold.otf");
+}
+@font-face {
+    font-family: 'tt-firs-neue-medium';
+    src: url("../../assets/TT-First-Neue/TTFirsNeue-Medium.otf");
+}
+@font-face {
+    font-family: 'tt-firs-neue-light';
+    src: url("../../assets/TT-First-Neue/TTFirsNeue-Light.otf");
+}
+@font-face {
+    font-family: 'tt-firs-neue-regular';
+    src: url("../../assets/TT-First-Neue/TTFirsNeue-Regular.otf");
+}
+
+/*
+
+Some styles would need !important to work (because they are already declared in build.css).
+
+That is fine.
+
+*/
+
+.booklist__year-title {
+    font-family: 'tt-firs-neue-light' !important;
+}
