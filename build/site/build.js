@@ -4794,342 +4794,6 @@ BemNode.prototype = {
 }
 
 })();
-/**
- * @block Grid Динамическая сетка
- * @tag base
- */
-Beast.decl({
-    Grid: {
-        // finalMod: true,
-        mod: {
-            Col: '',                // @mod Col {number} Ширина в колонках
-            Wrap: false,            // @mod Wrap {boolean} Основной контейнер сетки
-            Margin: false,          // @mod Margin {boolean} Поля
-            MarginX: false,         // @mod MarginX {boolean} Горизонтальные поля
-            MarginY: false,         // @mod MarginY {boolean} Вертикальные поля
-            Unmargin: false,        // @mod Unmargin {boolean} Отрицательные поля
-            UnmarginX: false,       // @mod UnmarginX {boolean} Отрицательные горизоантальные поля
-            UnmarginY: false,       // @mod UnmarginY {boolean} Отрацательные вертикальные поля
-            MarginRightGap: false,  // @mod MarginRightGap {boolean} Правый отступ равен — горизоантальное поле
-            MarginLeftGap: false,   // @mod MarginLeftGap {boolean} Левый отступ равен — горизоантальное поле
-            Cell: false,            // @mod Cell {boolean} Горизонтальный отступ между соседями — межколонник
-            Row: false,             // @mod Row {boolean} Вертикальынй отступ между соседями — межколонник
-            Rows: false,            // @mod Rows {boolean} Дочерние компоненты отступают на горизонтальное поле
-            Tile: false,            // @mod Tile {boolean} Модификатор дочернего компонента (для модификатора Tiles)
-            Tiles: false,           // @mod Tiles {boolean} Дочерние компоненты плиткой с отступами в поле
-            Center: false,          // @mod Center {boolean} Выравнивание по центру
-            Hidden: false,          // @mod Hidden {boolean} Спрятать компонент
-            ColCheck: false,        // @mod ColCheck {boolean} Считать ширину в колонках
-            Ratio: '',              // @mod Ratio {1x1 1x2 3x4 ...} Пропорция
-        },
-        param: {
-            isMaxCol: false,
-        },
-        onMod: {
-            Col: {
-                '*': function (fromParentGrid) {
-                    if (fromParentGrid === undefined) {
-                        this.param('isMaxCol', this.mod('col') === 'max')
-                    }
-                }
-            }
-        },
-        onCol: undefined,
-        domInit: function () {
-            this.param('isMaxCol', this.mod('col') === 'max')
-
-            if (this.mod('ColCheck')) {
-                this.onWin('resize', this.checkColWidth)
-                requestAnimationFrame(function () {
-                    this.checkColWidth()
-                }.bind(this))
-            }
-        },
-        onAttach: function (firstTime) {
-            this.setParentGrid(!firstTime)
-        },
-        checkColWidth: function () {
-            var prop = this.css('content').slice(1,-1).split(' ')
-            var col = parseInt(prop[0])
-            var gap = parseInt(prop[1])
-            var maxCol = parseInt(prop[2])
-            var marginX = parseInt(prop[3])
-            var marginY = parseFloat(prop[4])
-
-            if (isNaN(col)) {
-                return
-            }
-
-            var width = this.domNode().offsetWidth
-            var colNum = Math.floor((width + gap) / (col + gap))
-
-            if (colNum > maxCol) {
-                colNum = maxCol
-            }
-
-            this.trigger('Col', {
-                num: colNum,
-                edge: window.innerWidth === (colNum * col + (colNum-1) * gap + marginX * 2),
-                col: col,
-                gap: gap,
-                marginX: marginX,
-                marginY: marginY,
-            })
-        },
-        setParentGrid: function (recursive, parentGrid) {
-            if (this.onCol !== undefined || this.onEdge !== undefined || this.param('isMaxCol')) {
-                var that = this
-
-                if (parentGrid === undefined) {
-                    parentGrid = this._parentNode
-                    while (parentGrid !== undefined && !(parentGrid.isKindOf('Grid') && parentGrid.mod('ColCheck'))) {
-                        parentGrid = parentGrid._parentNode
-                    }
-                }
-
-                if (parentGrid !== undefined) {
-                    if (this.onCol || this.param('isMaxCol')) {
-                        parentGrid.on('Col', function (e, data) {
-                            that.onCol && that.onCol(data.num, data.edge, data)
-                            that.param('isMaxCol') && that.mod('Col', data.num, true)
-                        })
-                    }
-                }
-            }
-
-            if (recursive !== undefined) {
-                var children = this.get('/')
-                for (var i = 0, ii = children.length; i < ii; i++) {
-                    if (children[i].isKindOf('grid') && !children[i].mod('ColCheck')) {
-                        children[i].setParentGrid(recursive, parentGrid)
-                    }
-                }
-            }
-        }
-    }
-})
-
-function grid (num, col, gap, margin) {
-    var gridWidth = col * num + gap * (num - 1) + margin * 2
-    return gridWidth
-}
-/**
- * @block Typo Типографика
- * @tag base
- */
-
-Beast.decl({
-    Typo: {
-        // finalMod: true,
-        mod: {
-            text: '',       // @mod Text    {S M L XL XXL}  Text size
-            line: '',       // @mod Line    {S M L XL XXL}     Line height
-            caps: false,    // @mod Caps    {boolean}   Uppercase
-            light: false,   // @mod Light   {boolean}   Light
-            medium: false,  // @mod Medium  {boolean}   Medium
-            bold: false,    // @mod Bold    {boolean}   Bold
-            bolder: false,  // @mod Bolder  {boolean}   Bolder
-        }
-    }
-})
-
-Beast.decl({
-    App: {
-        inherits: ['Grid', 'UIStackNavigation'],
-        tag:'body',
-        mod: {
-            platform: '',
-            device: '',
-            ColCheck:true,
-        },
-        expand: function fn () {
-            
-
-            this.inherited(fn)
-
-            // this.append(
-            //     <DocInspector/>
-            // )
-
-            if (MissEvent.mobile) {
-                this.mix('mobile')
-            }
-
-            if (MissEvent.android) {
-                this.mix('android')
-            }
-
-            if (MissEvent.ios) {
-                this.mix('ios')
-            }
-
-            if (MissEvent.qs('exp')) {
-                MissEvent.qs('exp').split(',').forEach(function (expName) {
-                    this.mix('exp_' + expName)
-                }.bind(this))
-            }
-        },
-        domInit: function fn () {
-            this.inherited(fn)
-            history.pushState({}, '', '')
-
-
-        }
-    },
-})
-
-
-
-
-Beast.decl({
-    BookPage: {
-        requestApiV2: function (path, data) {
-            var self = this;
-
-            var hashPar = window.location.href.split('?')[1] || '';
-
-            var getUrlParameter = function getUrlParameter(sParam) {
-                var sPageURL = window.location.search.substring(1),
-                    sURLVariables = sPageURL.split('&'),
-                    sParameterName,
-                    i;
-
-                for (i = 0; i < sURLVariables.length; i++) {
-                    sParameterName = sURLVariables[i].split('=');
-
-                    if (sParameterName[0] === sParam) {
-                        return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
-                    }
-                }
-            };
-
-            var hash = getUrlParameter('name');
-
-            var url = window.location.href;
-            function parseUrl(url) {
-              var a = document.createElement("a");
-              a.href = url;
-              return a;
-            }
-
-            var color = this.param('colorText')
-
-            var parser = parseUrl(url);
-            var last_segment = parser.pathname.split('/').pop();
-            var searchParams = parser.search.substring(1).split("&");
-            var hash = parser.hash;
-
-            if (this.mod('Solo')) {
-                //var lastParamValue = searchParams[searchParams.length-1].split("=")[1];
-                var lastParamValue = last_segment;
-                var mod = 'Solo';
-            } else {
-                var lastParamValue = this.param('bookPath')
-                var mod = 'Empty';
-            }
-
-            console.log(lastParamValue)
-
-            var jsonUrl = 
-            'https://injs47s6.apicdn.sanity.io/v1/data/query/production?query=*[slug.current%20==%27' 
-            + lastParamValue + 
-            '%27]{%20title,%20slug,%20author,%20"cover":%20cover.asset->url,%20"descr":%20descr[]%20{%20"text":%20children[].text%20},%20"highlightsText":%20highlightsText[]%20{%20"text":%20children[].text%20},%20"highlights":%20highlights[]%20{%20"text":%20passage[]%20{%20"text":%20children[].text%20}%20}%20}';
-
-            Ajax({
-                url: jsonUrl,
-                data: data,
-
-                success: function (data) {
-                    var json = JSON.parse(data);
-
-                    self.empty().append(
-                        json.result.map(function(item, index) {
-
-                            var descr = [];
-                            var highlightsList = [];
-                            var highlightsListText = [];
-
-                            if (item.highlights) {
-                                {item.highlights.forEach((obj)=>
-                                    {highlightsList.push(obj.text);}
-                                )}
-                            }
-
-                            if (item.highlightsText) {
-                                {item.highlightsText.forEach((obj)=>
-                                    {highlightsListText.push(obj.text);}
-                                )}
-                            }
-
-                            if (item.descr) {
-                                {item.descr.forEach((obj)=>
-                                    {descr.push(obj.text);}
-                                )}
-                            }
-
-                            var image = item.cover;
-
-                            //var meta=document.createElement('meta');
-                            //meta.name='og:image';
-                            //meta.setAttribute('content', image);
-                            //document.getElementsByTagName('head')[0].appendChild(meta);
-
-                            //$('head').append('<meta property="og:image" content="image"/>');
-                            document.title += item.title;
-
-                            return (
-
-                                Beast.node("Book",{__context:this,"Page":true,"Mode":mod},"\n\n\n\n                                    ",Beast.node("path-item",undefined,item.title),"\n\n                                    ",Beast.node("cover",undefined,item.cover),"\n                                    ",Beast.node("title",undefined,item.title),"\n                                    ",Beast.node("author",undefined,item.author),"\n\n\n\n                                    ",descr.map(function(item, index) {
-
-                                        if (item !== undefined) {
-                                        return (    
-                                            Beast.node("intro",undefined,"\n                                                ",item.map(function(item, index) {
-                                                    var text = item.text;
-                                                    return Beast.node("p",undefined,item)
-                                                }),"\n                                            ")
-                                            )
-                                        }
-
-                                    }),"\n\n                                    ",highlightsList.map(function(item, index) {
-
-                                        if (item !== undefined) {
-                                        return (    
-                                            Beast.node("descr",undefined,"\n                                            ",item.map(function(item, index) {
-                                                var text = item.text;
-                                                return Beast.node("p",undefined,text)
-                                            }),"\n                                            ")
-                                            )
-                                        }
-
-                                    }),"\n\n                                    ",highlightsListText.map(function(item, index) {
-
-                                        if (item !== undefined) {
-                                        return (    
-                                            Beast.node("text",undefined,"\n                                                ",item.map(function(item, index) {
-                                                    var text = item.replace(/\s+(\W)/g, "$1");
-                                                    if (item === '* * *') {
-                                                        return Beast.node("p",{"Stars":true},text)
-                                                    } else {
-                                                        return Beast.node("p",undefined,text)
-                                                    }
-                                                    
-                                                }),"\n                                            ")
-                                            )
-                                        }
-
-                                    }),"\n                                ") 
-                            )
-                        })
-                    )
-                }
-            })
-        },
-
-        domInit: function () {
-            this.requestApiV2()
-        },
-    },    
-})
 Beast.decl({
     Book: {
         
@@ -5362,34 +5026,195 @@ Beast.decl({
 $( document ).ready(function() {
 
 });
+
 Beast.decl({
-    Director: {
+    App: {
+        inherits: ['Grid', 'UIStackNavigation'],
+        tag:'body',
+        mod: {
+            platform: '',
+            device: '',
+            ColCheck:true,
+        },
+        expand: function fn () {
+            
+
+            this.inherited(fn)
+
+            // this.append(
+            //     <DocInspector/>
+            // )
+
+            if (MissEvent.mobile) {
+                this.mix('mobile')
+            }
+
+            if (MissEvent.android) {
+                this.mix('android')
+            }
+
+            if (MissEvent.ios) {
+                this.mix('ios')
+            }
+
+            if (MissEvent.qs('exp')) {
+                MissEvent.qs('exp').split(',').forEach(function (expName) {
+                    this.mix('exp_' + expName)
+                }.bind(this))
+            }
+        },
+        domInit: function fn () {
+            this.inherited(fn)
+            history.pushState({}, '', '')
+
+
+        }
+    },
+})
+
+
+
+
+Beast.decl({
+    BookPage: {
         requestApiV2: function (path, data) {
-
-            // Get movie title from Movie component
-            var movie = this.param('movie');
-
-            // Add movie title to API request
-            var jsonUrl = 'http://www.omdbapi.com/?t=' + movie + '&apikey=3ec4bb18';
-
             var self = this;
+
+            var hashPar = window.location.href.split('?')[1] || '';
+
+            var getUrlParameter = function getUrlParameter(sParam) {
+                var sPageURL = window.location.search.substring(1),
+                    sURLVariables = sPageURL.split('&'),
+                    sParameterName,
+                    i;
+
+                for (i = 0; i < sURLVariables.length; i++) {
+                    sParameterName = sURLVariables[i].split('=');
+
+                    if (sParameterName[0] === sParam) {
+                        return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+                    }
+                }
+            };
+
+            var hash = getUrlParameter('name');
+
+            var url = window.location.href;
+            function parseUrl(url) {
+              var a = document.createElement("a");
+              a.href = url;
+              return a;
+            }
+
+            var color = this.param('colorText')
+
+            var parser = parseUrl(url);
+            var last_segment = parser.pathname.split('/').pop();
+            var searchParams = parser.search.substring(1).split("&");
+            var hash = parser.hash;
+
+            if (this.mod('Solo')) {
+                //var lastParamValue = searchParams[searchParams.length-1].split("=")[1];
+                var lastParamValue = last_segment;
+                var mod = 'Solo';
+            } else {
+                var lastParamValue = this.param('bookPath')
+                var mod = 'Empty';
+            }
+
+            console.log(lastParamValue)
+
+            var jsonUrl = 
+            'https://injs47s6.apicdn.sanity.io/v1/data/query/production?query=*[slug.current%20==%27' 
+            + lastParamValue + 
+            '%27]{%20title,%20slug,%20author,%20"cover":%20cover.asset->url,%20"descr":%20descr[]%20{%20"text":%20children[].text%20},%20"highlightsText":%20highlightsText[]%20{%20"text":%20children[].text%20},%20"highlights":%20highlights[]%20{%20"text":%20passage[]%20{%20"text":%20children[].text%20}%20}%20}';
 
             Ajax({
                 url: jsonUrl,
                 data: data,
-                dataType: 'jsonp',
 
                 success: function (data) {
-
                     var json = JSON.parse(data);
-                    var director = json.Director;
 
-                    if (director == 'N/A') {
-                        // Do nothing
-                    } else {
-                        // Add movie director's name
-                        self.empty().append(director)    
-                    }
+                    self.empty().append(
+                        json.result.map(function(item, index) {
+
+                            var descr = [];
+                            var highlightsList = [];
+                            var highlightsListText = [];
+
+                            if (item.highlights) {
+                                {item.highlights.forEach((obj)=>
+                                    {highlightsList.push(obj.text);}
+                                )}
+                            }
+
+                            if (item.highlightsText) {
+                                {item.highlightsText.forEach((obj)=>
+                                    {highlightsListText.push(obj.text);}
+                                )}
+                            }
+
+                            if (item.descr) {
+                                {item.descr.forEach((obj)=>
+                                    {descr.push(obj.text);}
+                                )}
+                            }
+
+                            var image = item.cover;
+
+                            //var meta=document.createElement('meta');
+                            //meta.name='og:image';
+                            //meta.setAttribute('content', image);
+                            //document.getElementsByTagName('head')[0].appendChild(meta);
+
+                            //$('head').append('<meta property="og:image" content="image"/>');
+                            document.title += item.title;
+
+                            return (
+
+                                Beast.node("Book",{__context:this,"Page":true,"Mode":mod},"\n\n\n\n                                    ",Beast.node("path-item",undefined,item.title),"\n\n                                    ",Beast.node("cover",undefined,item.cover),"\n                                    ",Beast.node("title",undefined,item.title),"\n                                    ",Beast.node("author",undefined,item.author),"\n\n\n\n                                    ",descr.map(function(item, index) {
+
+                                        if (item !== undefined) {
+                                        return (    
+                                            Beast.node("intro",undefined,"\n                                                ",item.map(function(item, index) {
+                                                    var text = item.text;
+                                                    return Beast.node("p",undefined,item)
+                                                }),"\n                                            ")
+                                            )
+                                        }
+
+                                    }),"\n\n                                    ",highlightsList.map(function(item, index) {
+
+                                        if (item !== undefined) {
+                                        return (    
+                                            Beast.node("descr",undefined,"\n                                            ",item.map(function(item, index) {
+                                                var text = item.text;
+                                                return Beast.node("p",undefined,text)
+                                            }),"\n                                            ")
+                                            )
+                                        }
+
+                                    }),"\n\n                                    ",highlightsListText.map(function(item, index) {
+
+                                        if (item !== undefined) {
+                                        return (    
+                                            Beast.node("text",undefined,"\n                                                ",item.map(function(item, index) {
+                                                    var text = item.replace(/\s+(\W)/g, "$1");
+                                                    if (item === '* * *') {
+                                                        return Beast.node("p",{"Stars":true},text)
+                                                    } else {
+                                                        return Beast.node("p",undefined,text)
+                                                    }
+                                                    
+                                                }),"\n                                            ")
+                                            )
+                                        }
+
+                                    }),"\n                                ") 
+                            )
+                        })
+                    )
                 }
             })
         },
@@ -5404,7 +5229,7 @@ Beast.decl({
         requestApiV2: function (path, data) {
             var self = this;
 
-            //var jsonUrl = 'https://injs47s6.apicdn.sanity.io/v1/data/query/production?query=*[_type%20==%20%27book%27]%20|%20order%20(date%20desc){%20pages,%20date,%20title,%20slug,%20author,%20%22cover%22:%20cover.asset-%3Eurl,%20%22highlightsText%22:%20highlightsText[]%20{%20%22text%22:%20children[].text%20},%20%22highlights%22:%20highlights[]%20{%20%22text%22:%20passage[]%20{%20%22text%22:%20children[].text%20}%20}%20}';
+            // var jsonUrl = 'https://injs47s6.apicdn.sanity.io/v1/data/query/production?query=*[_type%20==%20%27book%27]%20|%20order%20(date%20desc){%20pages,%20date,%20title,%20slug,%20author,%20%22cover%22:%20cover.asset-%3Eurl,%20%22highlightsText%22:%20highlightsText[]%20{%20%22text%22:%20children[].text%20},%20%22highlights%22:%20highlights[]%20{%20%22text%22:%20passage[]%20{%20%22text%22:%20children[].text%20}%20}%20}';
             var jsonUrl = 'https://5jnrq8s6.apicdn.sanity.io/v1/data/query/production?query=*[_type%20==%20%27book%27]%20|%20order%20(date%20desc){%20pages,%20date,%20title,%20slug,%20author,%20%22cover%22:%20cover.asset-%3Eurl,%20%22highlightsText%22:%20highlightsText[]%20{%20%22text%22:%20children[].text%20},%20%22highlights%22:%20highlights[]%20{%20%22text%22:%20passage[]%20{%20%22text%22:%20children[].text%20}%20}%20}';
 
             var view = this.parentBlock().mod('View')
@@ -5502,6 +5327,179 @@ Beast.decl({
         },
     },  
 })
+Beast.decl({
+    Director: {
+        requestApiV2: function (path, data) {
+
+            // Get movie title from Movie component
+            var movie = this.param('movie');
+
+            // Add movie title to API request
+            var jsonUrl = 'http://www.omdbapi.com/?t=' + movie + '&apikey=3ec4bb18';
+
+            var self = this;
+
+            Ajax({
+                url: jsonUrl,
+                data: data,
+                dataType: 'jsonp',
+
+                success: function (data) {
+
+                    var json = JSON.parse(data);
+                    var director = json.Director;
+
+                    if (director == 'N/A') {
+                        // Do nothing
+                    } else {
+                        // Add movie director's name
+                        self.empty().append(director)    
+                    }
+                }
+            })
+        },
+
+        domInit: function () {
+            this.requestApiV2()
+        },
+    },    
+})
+/**
+ * @block Grid Динамическая сетка
+ * @tag base
+ */
+Beast.decl({
+    Grid: {
+        // finalMod: true,
+        mod: {
+            Col: '',                // @mod Col {number} Ширина в колонках
+            Wrap: false,            // @mod Wrap {boolean} Основной контейнер сетки
+            Margin: false,          // @mod Margin {boolean} Поля
+            MarginX: false,         // @mod MarginX {boolean} Горизонтальные поля
+            MarginY: false,         // @mod MarginY {boolean} Вертикальные поля
+            Unmargin: false,        // @mod Unmargin {boolean} Отрицательные поля
+            UnmarginX: false,       // @mod UnmarginX {boolean} Отрицательные горизоантальные поля
+            UnmarginY: false,       // @mod UnmarginY {boolean} Отрацательные вертикальные поля
+            MarginRightGap: false,  // @mod MarginRightGap {boolean} Правый отступ равен — горизоантальное поле
+            MarginLeftGap: false,   // @mod MarginLeftGap {boolean} Левый отступ равен — горизоантальное поле
+            Cell: false,            // @mod Cell {boolean} Горизонтальный отступ между соседями — межколонник
+            Row: false,             // @mod Row {boolean} Вертикальынй отступ между соседями — межколонник
+            Rows: false,            // @mod Rows {boolean} Дочерние компоненты отступают на горизонтальное поле
+            Tile: false,            // @mod Tile {boolean} Модификатор дочернего компонента (для модификатора Tiles)
+            Tiles: false,           // @mod Tiles {boolean} Дочерние компоненты плиткой с отступами в поле
+            Center: false,          // @mod Center {boolean} Выравнивание по центру
+            Hidden: false,          // @mod Hidden {boolean} Спрятать компонент
+            ColCheck: false,        // @mod ColCheck {boolean} Считать ширину в колонках
+            Ratio: '',              // @mod Ratio {1x1 1x2 3x4 ...} Пропорция
+        },
+        param: {
+            isMaxCol: false,
+        },
+        onMod: {
+            Col: {
+                '*': function (fromParentGrid) {
+                    if (fromParentGrid === undefined) {
+                        this.param('isMaxCol', this.mod('col') === 'max')
+                    }
+                }
+            }
+        },
+        onCol: undefined,
+        domInit: function () {
+            this.param('isMaxCol', this.mod('col') === 'max')
+
+            if (this.mod('ColCheck')) {
+                this.onWin('resize', this.checkColWidth)
+                requestAnimationFrame(function () {
+                    this.checkColWidth()
+                }.bind(this))
+            }
+        },
+        onAttach: function (firstTime) {
+            this.setParentGrid(!firstTime)
+        },
+        checkColWidth: function () {
+            var prop = this.css('content').slice(1,-1).split(' ')
+            var col = parseInt(prop[0])
+            var gap = parseInt(prop[1])
+            var maxCol = parseInt(prop[2])
+            var marginX = parseInt(prop[3])
+            var marginY = parseFloat(prop[4])
+
+            if (isNaN(col)) {
+                return
+            }
+
+            var width = this.domNode().offsetWidth
+            var colNum = Math.floor((width + gap) / (col + gap))
+
+            if (colNum > maxCol) {
+                colNum = maxCol
+            }
+
+            this.trigger('Col', {
+                num: colNum,
+                edge: window.innerWidth === (colNum * col + (colNum-1) * gap + marginX * 2),
+                col: col,
+                gap: gap,
+                marginX: marginX,
+                marginY: marginY,
+            })
+        },
+        setParentGrid: function (recursive, parentGrid) {
+            if (this.onCol !== undefined || this.onEdge !== undefined || this.param('isMaxCol')) {
+                var that = this
+
+                if (parentGrid === undefined) {
+                    parentGrid = this._parentNode
+                    while (parentGrid !== undefined && !(parentGrid.isKindOf('Grid') && parentGrid.mod('ColCheck'))) {
+                        parentGrid = parentGrid._parentNode
+                    }
+                }
+
+                if (parentGrid !== undefined) {
+                    if (this.onCol || this.param('isMaxCol')) {
+                        parentGrid.on('Col', function (e, data) {
+                            that.onCol && that.onCol(data.num, data.edge, data)
+                            that.param('isMaxCol') && that.mod('Col', data.num, true)
+                        })
+                    }
+                }
+            }
+
+            if (recursive !== undefined) {
+                var children = this.get('/')
+                for (var i = 0, ii = children.length; i < ii; i++) {
+                    if (children[i].isKindOf('grid') && !children[i].mod('ColCheck')) {
+                        children[i].setParentGrid(recursive, parentGrid)
+                    }
+                }
+            }
+        }
+    }
+})
+
+function grid (num, col, gap, margin) {
+    var gridWidth = col * num + gap * (num - 1) + margin * 2
+    return gridWidth
+}
+Beast
+.decl('link', {
+    tag:'a',
+    mod: {
+        type:'blue'
+    },
+    noElems:true,
+    expand: function () {
+        this.domAttr('href', this.param('href'))
+        if (this.mod('New')) {
+            this.domAttr('target', '_blank')
+        }
+    }
+})
+
+
+
 
 
 Beast.decl({
@@ -5547,23 +5545,6 @@ Beast.decl({
         },
     },    
 })
-Beast
-.decl('link', {
-    tag:'a',
-    mod: {
-        type:'blue'
-    },
-    noElems:true,
-    expand: function () {
-        this.domAttr('href', this.param('href'))
-        if (this.mod('New')) {
-            this.domAttr('target', '_blank')
-        }
-    }
-})
-
-
-
 Beast.decl({
     Director: {
         requestApiV2: function (path, data) {
@@ -5639,6 +5620,59 @@ Beast.decl({
     },
 
   
+})
+
+Beast.decl({
+    Switch: {
+        expand: function () {
+        },
+
+        domInit: function () {
+
+            
+        }
+    },
+
+    Switch__item: {
+        tag: 'a',
+        expand: function () {
+            this.domAttr('href', this.param('href'))
+            
+        },
+
+        domInit: function () {
+
+            
+        }
+    },
+})
+
+
+
+Beast.decl({
+    Years: {
+        expand: function () {
+        
+        },
+
+        domInit: function () {
+
+            
+        }
+    },
+
+    Switch__item: {
+        tag: 'a',
+        expand: function () {
+            this.domAttr('href', this.param('href'))
+            
+        },
+
+        domInit: function () {
+
+            
+        }
+    },
 })
 /**
  * @block Overlay Интерфейс модальных окон
@@ -5925,59 +5959,6 @@ Beast.decl({
     
 })
 
-
-Beast.decl({
-    Switch: {
-        expand: function () {
-        },
-
-        domInit: function () {
-
-            
-        }
-    },
-
-    Switch__item: {
-        tag: 'a',
-        expand: function () {
-            this.domAttr('href', this.param('href'))
-            
-        },
-
-        domInit: function () {
-
-            
-        }
-    },
-})
-
-
-
-Beast.decl({
-    Years: {
-        expand: function () {
-        
-        },
-
-        domInit: function () {
-
-            
-        }
-    },
-
-    Switch__item: {
-        tag: 'a',
-        expand: function () {
-            this.domAttr('href', this.param('href'))
-            
-        },
-
-        domInit: function () {
-
-            
-        }
-    },
-})
 /**
  * @block Thumb Тумбнеил
  * @dep grid link
@@ -6285,6 +6266,25 @@ Beast.decl({
 // @example <Thumb Ratio="1x1" Col="3" Shadow src="https://jing.yandex-team.ru/files/kovchiy/2017-03-23_02-14-26.png"/>
 // @example <Thumb Ratio="1x1" Col="3" Grid src="https://jing.yandex-team.ru/files/kovchiy/2017-03-23_02-14-26.png"/>
 // @example <Thumb Ratio="1x1" Col="3" Rounded src="https://jing.yandex-team.ru/files/kovchiy/2017-03-23_02-14-26.png"/>
+/**
+ * @block Typo Типографика
+ * @tag base
+ */
+
+Beast.decl({
+    Typo: {
+        // finalMod: true,
+        mod: {
+            text: '',       // @mod Text    {S M L XL XXL}  Text size
+            line: '',       // @mod Line    {S M L XL XXL}     Line height
+            caps: false,    // @mod Caps    {boolean}   Uppercase
+            light: false,   // @mod Light   {boolean}   Light
+            medium: false,  // @mod Medium  {boolean}   Medium
+            bold: false,    // @mod Bold    {boolean}   Bold
+            bolder: false,  // @mod Bolder  {boolean}   Bolder
+        }
+    }
+})
 Beast.decl({
 
     /**
