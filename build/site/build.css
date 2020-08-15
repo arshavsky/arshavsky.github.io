@@ -2727,173 +2727,6 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 /* CUT THE FILE HERE */
-.Years {
-  background: #171717;
-  width: 43px;
-  height: 100%;
-  position: fixed;
-  z-index: 1;
-  color: rgba(255,255,255,0.529);
-  font-size: 15px;
-}
-.Years__item {
-  opacity: 0.6;
-  -webkit-transform: rotate(-90deg) scale(1);
-  transform: rotate(-90deg) scale(1);
-  transition: opacity 0.2s, -webkit-transform 0.2s;
-  transition: transform 0.2s, opacity 0.2s;
-  transition: transform 0.2s, opacity 0.2s, -webkit-transform 0.2s;
-}
-.Years__item:hover {
-  cursor: default;
-  opacity: 1;
-  -webkit-transform: rotate(-90deg) scale(1.08);
-  transform: rotate(-90deg) scale(1.08);
-}
-.Years__item:hover:active {
-  -webkit-transform: rotate(-90deg) scale(0.98);
-  transform: rotate(-90deg) scale(0.98);
-}
-.Years__item_Active {
-  background: #171717;
-  opacity: 1;
-}
-.Years__item_Active:hover {
-  cursor: default;
-  -webkit-transform: rotate(-90deg) scale(1);
-  transform: rotate(-90deg) scale(1);
-}
-.Years__item {
-  margin-top: 10px;
-  margin-bottom: 36px;
-}
-.Books {
-  margin-top: 40px;
-/*padding-left 40px*/
-}
-.Books__year {
-  color: #efefef;
-  font-size: 17px;
-  font-family: Archivo;
-  display: -webkit-flex;
-  display: flex;
-  padding-top: 16px;
-  position: absolute;
-  opacity: 0.4;
-  margin-left: 52px;
-}
-@media screen and (max-width: 767px) {
-  .Books__year {
-    position: relative !important;
-    margin-left: 20px;
-    margin-bottom: 20px;
-  }
-}
-.Books_view_list {
-  margin-top: 100px;
-}
-.Books_view_shelf {
-  background: #171717;
-  white-space: nowrap;
-}
-.Books {
-  text-align: center;
-/*margin: 40px 0;*/
-/*top: 30vw;*/
-  position: relative;
-  -webkit-animation: slide-up 0.9s ease-out;
-/*transition-timing-function: cubic-bezier(0.29, 1, 0, 1);
-            transition: transform 0.35s, box-shadow 0.35s, -webkit-transform 0.35s;*/
-}
-.Books__book {
-  width: 33%;
-  height: 400px;
-  overflow: hidden;
-  float: left;
-  background: #f2f0eb;
-/*margin: 2px;*/
-  padding: 40px;
-  box-sizing: border-box;
-}
-.book__descr,
-.book__text {
-  display: none;
-}
-/* CUT THE FILE HERE */
-/* CUT THE FILE HERE */
-.Movies {
-  margin-top: 50px;
-}
-/* CUT THE FILE HERE */
-.Link {
-  color: #232323;
-  text-decoration: none;
-}
-.Link_White {
-  color: #fff;
-}
-.Link_type_white {
-  color: #fff;
-}
-.Link_type_white:hover {
-  text-decoration: none;
-  color: #fff;
-}
-/* CUT THE FILE HERE */
-.Movies {
-  margin-top: 50px;
-}
-/*border-right: 1px solid #ffffff1c;*/
-@font-face {
-  font-family: 'Garamond';
-  src: url("https://antiggo.ru/read/assets/AGaramondPro-Regular.eot");
-  src: url("https://antiggo.ru/read/assets/AGaramondPro-Regular.eot?#iefix") format('embedded-opentype'), url("https://antiggo.ru/read/assets/AGaramondPro-Regular.woff") format('woff'), url("http://olgatokareva.ru/assets/font/AGaramondPro-Regular.ttf") format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-@-webkit-keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@-webkit-keyframes slide-up {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(10px);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-  }
-}
-@-webkit-keyframes slide-down {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(-15px);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-  }
-}
-.Title {
-/*-webkit-animation: slide-down 0.9s ease-out;*/
-  margin-top: -30px;
-  line-height: 15vw;
-  margin-bottom: 100px;
-  text-transform: uppercase;
-  text-align: center;
-  font-size: 17vw;
-  font-family: 'Garamond', 'garamond-premier-pro-display', serif;
-  margin-bottom: -20px;
-  position: fixed;
-/* background-size: 70%; */
-  color: #edebe7;
-}
-/* CUT THE FILE HERE */
 .Column {
   margin-top: 80px;
   margin-bottom: 80px;
@@ -3242,6 +3075,158 @@ html {
         #000 6px 6px 0,
         #000 7px 7px 0,
         #000 8px 8px 0;*/
+}
+/* CUT THE FILE HERE */
+.Years {
+  background: #171717;
+  width: 43px;
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  color: rgba(255,255,255,0.529);
+  font-size: 15px;
+}
+.Years__item {
+  opacity: 0.6;
+  -webkit-transform: rotate(-90deg) scale(1);
+  transform: rotate(-90deg) scale(1);
+  transition: opacity 0.2s, -webkit-transform 0.2s;
+  transition: transform 0.2s, opacity 0.2s;
+  transition: transform 0.2s, opacity 0.2s, -webkit-transform 0.2s;
+}
+.Years__item:hover {
+  cursor: default;
+  opacity: 1;
+  -webkit-transform: rotate(-90deg) scale(1.08);
+  transform: rotate(-90deg) scale(1.08);
+}
+.Years__item:hover:active {
+  -webkit-transform: rotate(-90deg) scale(0.98);
+  transform: rotate(-90deg) scale(0.98);
+}
+.Years__item_Active {
+  background: #171717;
+  opacity: 1;
+}
+.Years__item_Active:hover {
+  cursor: default;
+  -webkit-transform: rotate(-90deg) scale(1);
+  transform: rotate(-90deg) scale(1);
+}
+.Years__item {
+  margin-top: 10px;
+  margin-bottom: 36px;
+}
+.Books {
+  margin-top: 40px;
+/*padding-left 40px*/
+}
+.Books__year {
+  color: #efefef;
+  font-size: 17px;
+  font-family: Archivo;
+  display: -webkit-flex;
+  display: flex;
+  padding-top: 16px;
+  position: absolute;
+  opacity: 0.4;
+  margin-left: 52px;
+}
+@media screen and (max-width: 767px) {
+  .Books__year {
+    position: relative !important;
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+}
+.Books_view_list {
+  margin-top: 100px;
+}
+.Books_view_shelf {
+  background: #171717;
+  white-space: nowrap;
+}
+.Books {
+  text-align: center;
+/*margin: 40px 0;*/
+/*top: 30vw;*/
+  position: relative;
+  -webkit-animation: slide-up 0.9s ease-out;
+/*transition-timing-function: cubic-bezier(0.29, 1, 0, 1);
+            transition: transform 0.35s, box-shadow 0.35s, -webkit-transform 0.35s;*/
+}
+.Books__book {
+  width: 33%;
+  height: 400px;
+  overflow: hidden;
+  float: left;
+  background: #f2f0eb;
+/*margin: 2px;*/
+  padding: 40px;
+  box-sizing: border-box;
+}
+.book__descr,
+.book__text {
+  display: none;
+}
+/* CUT THE FILE HERE */
+/* CUT THE FILE HERE */
+.Movies {
+  margin-top: 50px;
+}
+/* CUT THE FILE HERE */
+.Movies {
+  margin-top: 50px;
+}
+/*border-right: 1px solid #ffffff1c;*/
+@font-face {
+  font-family: 'Garamond';
+  src: url("https://antiggo.ru/read/assets/AGaramondPro-Regular.eot");
+  src: url("https://antiggo.ru/read/assets/AGaramondPro-Regular.eot?#iefix") format('embedded-opentype'), url("https://antiggo.ru/read/assets/AGaramondPro-Regular.woff") format('woff'), url("http://olgatokareva.ru/assets/font/AGaramondPro-Regular.ttf") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes slide-up {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+  }
+}
+@-webkit-keyframes slide-down {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-15px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+  }
+}
+.Title {
+/*-webkit-animation: slide-down 0.9s ease-out;*/
+  margin-top: -30px;
+  line-height: 15vw;
+  margin-bottom: 100px;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 17vw;
+  font-family: 'Garamond', 'garamond-premier-pro-display', serif;
+  margin-bottom: -20px;
+  position: fixed;
+/* background-size: 70%; */
+  color: #edebe7;
 }
 /* CUT THE FILE HERE */
 .Overlay__background {
@@ -4100,108 +4085,19 @@ html {
   display: none;
 }
 /* CUT THE FILE HERE */
-.scroll_shadows .slick-prev-container:after,
-.scroll_shadows .slick-next-container:after {
-  background: transparent;
-  width: 25px;
-  position: absolute;
-  content: '';
-  top: 0;
-  bottom: 0;
+.Link {
+  color: #232323;
+  text-decoration: none;
 }
-.scroll_shadows .slick-prev-container:after {
-  left: 0;
-  margin-left: -25px;
-  box-shadow: 10px 0px 10px -9px rgba(0,0,0,0.18);
-}
-.scroll_shadows .slick-next-container:after {
-  right: 0;
-  margin-right: -25px;
-  box-shadow: -10px 0px 10px -9px rgba(0,0,0,0.18);
-}
-.slick-list {
-  outline: 0;
-  padding: 16px 0;
-  margin: -16px 0;
-}
-.slick-slide a:visited {
+.Link_White {
   color: #fff;
 }
-.slick-list {
-  overflow: hidden !important;
+.Link_type_white {
+  color: #fff;
 }
-.slick-disabled {
-  opacity: 0 !important;
-}
-button.slick-prev,
-button.slick-next {
-  border: 0 none;
-  outline: 0;
-  overflow: hidden;
-  padding: 0;
-  text-indent: 10em;
-  height: 52px;
-  width: 52px;
-/*opacity: .9;*/
-  background: #f2f0eb;
-/*background: #F4F4F4;*/
-  position: absolute;
-  border-radius: 100%;
-  z-index: 10;
-  margin-top: auto;
-  margin-bottom: auto;
-  top: 0;
-  bottom: 0;
-  display: block;
-/*box-shadow: 0 7px 15px <TMPL_HELPER modify_color color=bui_color_black alpha="0.2">;*/
-/*box-shadow: 0 2px 6px 0 rgba(0,0,0,.2);*/
-  box-shadow: 0 0 0 1px rgba(0,0,0,0.04), 0 4px 8px 0 rgba(0,0,0,0.2);
-  cursor: pointer;
-  transition: opacity 0.1s ease-out, -webkit-transform 0.1s ease-out;
-  transition: transform 0.1s ease-out, opacity 0.1s ease-out;
-  transition: transform 0.1s ease-out, opacity 0.1s ease-out, -webkit-transform 0.1s ease-out;
-}
-button.slick-prev:active,
-button.slick-next:active {
-  -webkit-transform: scale(1) !important;
-  transform: scale(1) !important;
-}
-button.slick-next,
-button.slick-next:hover,
-button.slick-prev,
-button.slick-prev:hover {
-  background-repeat: no-repeat;
-  background-size: 20%;
-}
-button.slick-next:hover,
-button.slick-prev:hover {
-  opacity: 1;
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
-button.slick-next,
-button.slick-next:hover {
-  background-position: 55% 50%;
-}
-button.slick-prev,
-button.slick-prev:hover {
-  background-position: 45% 50%;
-}
-button.slick-next {
-  right: -20px;
-/*opacity: .8;*/
-  background-image: url("/assets/showcase-right.png");
-}
-button.slick-next:hover {
-  opacity: 1;
-}
-button.slick-prev {
-  left: -20px;
-/*opacity: .8;*/
-  background-image: url("/assets/showcase-left.png");
-}
-button.slick-prev:hover {
-  opacity: 1;
+.Link_type_white:hover {
+  text-decoration: none;
+  color: #fff;
 }
 @-webkit-keyframes fadein {
   from {
